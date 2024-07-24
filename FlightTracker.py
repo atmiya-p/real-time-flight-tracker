@@ -1,4 +1,0 @@
-
-# Aviationstack API
-
-import requests
