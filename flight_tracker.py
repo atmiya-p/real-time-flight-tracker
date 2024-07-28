@@ -4,7 +4,7 @@ import requests
 import config
 
 # Function to get the flight information, with the parameter being the flight number
-def get_flight_info(flight_number):
+def get_flight_info(flightNumber):
     apiKey = config.API_KEY
     params = {
         'access_key' : apiKey
@@ -15,11 +15,20 @@ def get_flight_info(flight_number):
     flights_results = requests.get(apiURL, params)
 
     if flights_results.ok:
-        aviationstack_info = flights_results.json()
+        return flights_results.json()
     else:
         print("Unfortunately there was an error: ", flights_results.status_code)
+        return None
 
 if __name__ == '__main__':
+    flightInput = input("Enter the flight you'd like to track: ")
+
+    flightInformation = get_flight_info(flightInput)
+
+    if flightInformation:
+        print(flightInformation)
+
+
 
 
 
