@@ -39,6 +39,12 @@ def display_flight_info(flightInformation, flightInput):
     else:
         print("Flight information is unavailable")
 
+# Function to format the time that is returned by the API
+def time_format(time):
+    updatedTime = time.split("T")
+    return f"{updatedTime[1]}, {updatedTime[0]}"
+
+
 if __name__ == '__main__':
     flightInput = input("Enter the flight you'd like to track: ")
 
