@@ -29,11 +29,12 @@ def format_time(time):
     return "N/A"
 
 # Function used to display the flight information, param is the entire flight Information list that the API gives with the matched flight number
+# https://aviationstack.com/documentation
 def display_flight_info(flightInformation, flightInput):
     if flightInformation and 'data' in flightInformation:
         if flightInformation['data']:
             flight = flightInformation['data'][0]
-            print(f"Airline: {flight['airline']['name']} ({flight['aircraft']['iata']})")
+            print(f"Airline: {flight['airline']['name']}")
             print(f"Flight Number: {flight['flight']['iata']}")
             print(f"Flight Status: {flight['flight_status']}")
             print(f"Flight Date: {flight['flight_date']}")
