@@ -40,8 +40,11 @@ def display_flight_info(flightInformation, flightInput):
             print(f"Flight Date: {flight['flight_date']}")
             print(f"Departure Airport: {flight['departure']['airport']} ({flight['departure']['iata']})")
             print(f"Arrival Airport: {flight['arrival']['airport']} ({flight['arrival']['iata']})")
-            print(f"Estimated Arrival Time: {format_time(flight['arrival']['estimated'])}")
-            print(f"Actual Arrival Time: {format_time(flight['arrival']['actual'])}")
+            print(f"Estimated Departure Time: {format_time(flight['departure']['estimated'])}, Time zone: {flight['departure']['timezone']}")
+            print(f"Actual Departure Time: {format_time(flight['departure']['actual'])}, Time zone: {flight['departure']['timezone']}")
+            print(f"Estimated Arrival Time: {format_time(flight['arrival']['estimated'])}, Time zone: {flight['arrival']['timezone']}")
+            print(f"Actual Arrival Time: {format_time(flight['arrival']['actual'])}, Time zone: {flight['arrival']['timezone']}")
+            
         else:
             print(f"Flight {flightInput} could not be found")
     else:
