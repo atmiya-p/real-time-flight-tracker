@@ -21,6 +21,13 @@ def get_API_info(flightNumber):
         print("Unfortunately there was an error: ", flights_results.status_code)
         return None
 
+# Function to format the time that is returned by the API
+def format_time(time):
+    if time:
+        updatedTime = time.split("T")  # element at index 0 - time, element at index 1 - date
+        return f"{updatedTime[1]}, {updatedTime[0]}"
+    return "N/A"
+
 # Function used to display the flight information, param is the entire flight Information list that the API gives with the matched flight number
 def display_flight_info(flightInformation, flightInput):
     if flightInformation and 'data' in flightInformation:
@@ -32,17 +39,12 @@ def display_flight_info(flightInformation, flightInput):
             print(f"Flight Date: {flight['flight_date']}")
             print(f"Departure Airport: {flight['departure']['airport']} ({flight['departure']['iata']})")
             print(f"Arrival Airport: {flight['arrival']['airport']} ({flight['arrival']['iata']})")
-            print(f"Estimated Arrival Time: {flight['arrival']['estimated']}")
-            print(f"Actual Arrival Time: {flight['arrival']['actual']}")
+            print(f"Estimated Arrival Time: {format_time(flight['arrival']['estimated'])}")
+            print(f"Actual Arrival Time: {format_time(flight['arrival']['actual'])}")
         else:
             print(f"Flight {flightInput} could not be found")
     else:
         print("Flight information is unavailable")
-
-# Function to format the time that is returned by the API
-def time_format(time):
-    updatedTime = time.split("T")
-    return f"{updatedTime[1]}, {updatedTime[0]}"
 
 
 if __name__ == '__main__':
