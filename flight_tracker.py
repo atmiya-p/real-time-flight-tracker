@@ -52,12 +52,22 @@ def display_flight_info(flightInformation, flightInput):
         print("Flight information is unavailable")
 
 
+# Function to make sure that flight number is in correct format if entered differently
+def validate_flight_code(flightNo):
+    return flightNo.replace(" ", "")
+
+
 if __name__ == '__main__':
     flightInput = input("Enter the flight you'd like to track: ")
 
-    flightInformation = get_api_info(flightInput)
+    if flightInput:
+        flightInput = validate_flight_code(flightInput)
+        flightInformation = get_api_info(flightInput)
 
-    if flightInformation:
-        display_flight_info(flightInformation, flightInput)
+        if flightInformation:
+            display_flight_info(flightInformation, flightInput)
+        else:
+            print(f"Unable to retrieve and print flight {flightInput} information")
+
     else:
-        print(f"Unable to retrieve and print flight {flightInput} information")
+        print("Please enter a valid flight number")
